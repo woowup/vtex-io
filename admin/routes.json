@@ -1,0 +1,6 @@
+{
+    "admin.app.example": {
+      "component": "woowupConfiguration",
+      "path": "/admin/app/woowup-testing"
+    }
+  }

@@ -1,0 +1,7 @@
+type Query {
+  config: String
+}
+
+type Mutation {
+  saveConfig(config: String): String
+}
