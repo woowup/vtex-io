@@ -1,10 +1,10 @@
-import config from './config'
-import saveConfig from './saveConfig'
+import config from "./config";
+import saveConfig from "./saveConfig";
 
 export const mutations = {
-    saveConfig,
-}
+  saveConfig,
+};
 
 export const queries = {
-    config,
-}
+  config,
+};

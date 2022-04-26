@@ -1,2 +1,4 @@
 */node_modules/
 *.lock
+node_modules
+package-lock.json

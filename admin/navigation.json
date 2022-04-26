@@ -1,5 +1,5 @@
 {
-    "section": "other",
-    "titleId": "admin-example.navigation.label",
-    "path": "/admin/woowup-testing"
-  }
+  "section": "other",
+  "titleId": "admin-woowup.navigation.label",
+  "path": "/admin/woowup"
+}
