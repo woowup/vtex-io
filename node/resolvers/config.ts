@@ -1,5 +1,5 @@
 export default function config(_: any, __: any, ctx: Context) {
     return ctx.clients.vbase
-        .getJSON<{ config: string }>('account.example', 'configs')
-        .then(({ config }) => config)
+          .getJSON('account.example', 'configs')
+          .catch((_) => null)
 }

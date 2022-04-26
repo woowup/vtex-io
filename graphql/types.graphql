@@ -1,12 +1,4 @@
-type Query {
-  config: Configuration
-}
-
-type Mutation {
-  saveConfig(config: ConfigurationInput): String
-}
-
-input ConfigurationInput {
+type Configuration {
   url: String
   orderStatus: String
   branchName: String
