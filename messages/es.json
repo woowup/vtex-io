@@ -1,3 +1,12 @@
 {
-  "admin-woowup.navigation.label": "WoowUp"
+  "admin-woowup.navigation.label": "WoowUp",
+  "admin-woowup.configuration.title": "Configuración WoowUp",
+  "admin-woowup.configuration.input.branchName": "Nombre de la tienda*",
+  "admin-woowup.configuration.input.orderStatus": "Estados de venta para descargar",
+  "admin-woowup.configuration.input.categories": "Descarga de categorías",
+  "admin-woowup.configuration.save": "Guardar",
+  "admin-woowup.configuration.success": "Tu cuenta fue vinculada satisfactoriamente",
+  "admin-woowup.configuration.unexpectedError": "Ocurrió un error inesperado. Intenta nuevamente o contacta a nuestro soporte.",
+  "admin-woowup.configuration.missingFieldsError": "Debe completar todos los campos requeridos."
+
 }

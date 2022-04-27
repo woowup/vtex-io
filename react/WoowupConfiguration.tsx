@@ -1,8 +1,9 @@
 import React, { FC, useState } from "react";
 import { useMutation, useQuery } from "react-apollo";
-import { Layout, PageBlock, Input, Button, Dropdown, Spinner } from "vtex.styleguide";
+import { Layout, PageBlock, Input, Button, Dropdown, Spinner, Alert } from "vtex.styleguide";
 import saveConfigGQL from "./graphql/saveConfig.gql";
 import configGQL from "./graphql/config.gql";
+import { useIntl, FormattedMessage } from 'react-intl';
 
 const downloadCategoriesOptions = [
   { value: 'active', label: 'Activo' },
@@ -10,6 +11,7 @@ const downloadCategoriesOptions = [
 ];
 
 const WoowUpConfiguration: FC = () => {
+  const intl = useIntl();
   const [config, setConfig] = useState({
     url: "",
     orderStatus: "",
@@ -19,17 +21,75 @@ const WoowUpConfiguration: FC = () => {
     appToken: "",
     salesChannel: "",
     downloadCategories: "",
+    woowupVtexKey: ""
   });
-  const {loading, error} = useQuery(configGQL, { onCompleted: ({ config }) => setConfig(config) });
-  // if (loading) return <Spinner />;
-  if (error) return <div>`Error! ${error}`</div>;
-  // if (data) setConfig(data);
-  // , { onCompleted: ({ config }) => setConfig(config) });
+  const [success, showSuccess] = useState(false);
+  const [error, showError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+  const {loading} = useQuery(configGQL, { onCompleted: ({ config }) => setConfig(config) });
   const [saveConfig] = useMutation(saveConfigGQL);
+
+  function save() {
+    if (!config.url || !config.branchName || !config.appToken || !config.woowupVtexKey) {
+      showError(true)
+      setErrorMessage(intl.formatMessage({id: "admin-woowup.configuration.missingFieldsError"}))
+      return;
+    }
+    const body = {
+        'vt_store': config.url,
+        'vt_name': config.branchName,
+        'vt_appkey': config.appKey,
+        'vt_apptoken': config.appToken,
+        'vt_seller': config.seller,
+        'vt_categories_enabled': config.downloadCategories,
+        'vt_status': config.orderStatus,
+        'vt_f_saleschannel': config.salesChannel
+      }
+
+    let request: RequestInit = {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "Authorization": config.woowupVtexKey },
+      body: JSON.stringify(body),
+    }
+
+    fetch("https://admin.woowup.com/apiv3/vtex/integration", request)
+    .then(r =>  r.json().then(data => ({status: r.status, body: data})))
+    .then(response => {
+      if (response.status === 200) {
+        showSuccess(true)
+        saveConfig({
+          variables: {
+            config
+          },
+        });
+      } else {
+        showError(true)
+        setErrorMessage(response.body.message)
+      }
+    })
+    .catch((_e) => {
+      showError(true)
+      setErrorMessage(intl.formatMessage({id: "admin-woowup.configuration.unexpectedError"}))
+    })
+  }
 
   return (
     <Layout>
-      <PageBlock title="Configuración WoowUp" variation="full">
+      <PageBlock title={intl.formatMessage({id: "admin-woowup.configuration.title"})} variation="full">
+        {success &&
+          <div style={{marginBottom: "20px"}}>
+            <Alert className="mb-20" type="success" onClose={() => showSuccess(false)}>
+              <FormattedMessage id="admin-woowup.configuration.success"/>
+            </Alert>
+          </div>
+        }
+        {error && 
+          <div style={{marginBottom: "20px"}}>
+            <Alert type="error" onClose={() => showError(false)}>
+              Error: {errorMessage}
+            </Alert> 
+          </div>
+        }
         {loading ? 
           <div className="flex" style={{justifyContent: "center"}}>
             <Spinner />
@@ -47,7 +107,7 @@ const WoowUpConfiguration: FC = () => {
               />
               <Input
                 autocomplete="off"
-                label="Nombre de la tienda*"
+                label={intl.formatMessage({id: "admin-woowup.configuration.input.branchName"})}
                 value={config.branchName}
                 onChange={(e: any) =>
                   setConfig({ ...config, ...{ branchName: e.target.value } })
@@ -69,11 +129,19 @@ const WoowUpConfiguration: FC = () => {
                   setConfig({ ...config, ...{ appToken: e.target.value } })
                 }
               />
+              <Input
+                autocomplete="off"
+                label="WoowUp VTEX Token*"
+                value={config.woowupVtexKey}
+                onChange={(e: any) =>
+                  setConfig({ ...config, ...{ woowupVtexKey: e.target.value } })
+                }
+              />
             </div>
             <div className="w-40" style={{ display: "flex", flexDirection: "column", gap: "15px"} }>
               <Input
                 autocomplete="off"
-                label="Estados de venta para descargar"
+                label={intl.formatMessage({id: "admin-woowup.configuration.input.orderStatus"})}
                 value={config.orderStatus}
                 onChange={(e: any) =>
                   setConfig({ ...config, ...{ orderStatus: e.target.value } })
@@ -88,7 +156,7 @@ const WoowUpConfiguration: FC = () => {
                 }
               />
               <Dropdown
-                label="Descarga de categorías"
+                label={intl.formatMessage({id: "admin-woowup.configuration.input.categories"})}
                 options={downloadCategoriesOptions}
                 value={config.downloadCategories}
                 onChange={(_: any, v: React.SetStateAction<string>) => 
@@ -105,14 +173,10 @@ const WoowUpConfiguration: FC = () => {
               <div style={{marginTop: "25px", textAlign: "right"}}>
                 <Button
                   onClick={() => {
-                    saveConfig({
-                      variables: {
-                        config
-                      },
-                    });
+                    save()
                   }}
                 >
-                  Guardar
+                  <FormattedMessage id="admin-woowup.configuration.save" />
                 </Button>
               </div>
             </div>
