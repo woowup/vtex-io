@@ -7,6 +7,7 @@
   "admin-woowup.configuration.save": "Guardar",
   "admin-woowup.configuration.success": "Tu cuenta fue vinculada satisfactoriamente",
   "admin-woowup.configuration.unexpectedError": "Ocurrió un error inesperado. Intenta nuevamente o contacta a nuestro soporte.",
-  "admin-woowup.configuration.missingFieldsError": "Debe completar todos los campos requeridos."
+  "admin-woowup.configuration.missingFieldsError": "Debe completar todos los campos requeridos.",
+  "admin-woowup.configuration.invalidCredentials": "La clave WoowUp es inválida"
 
 }

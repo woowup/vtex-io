@@ -62,6 +62,9 @@ const WoowUpConfiguration: FC = () => {
             config
           },
         });
+      } else if (response.status === 403) {
+        showError(true)
+        setErrorMessage(intl.formatMessage({id: "admin-woowup.configuration.invalidCredentials"}))
       } else {
         showError(true)
         setErrorMessage(response.body.message)
@@ -105,13 +108,15 @@ const WoowUpConfiguration: FC = () => {
                   setConfig({ ...config, ...{ url: e.target.value } })
                 }
               />
+
               <Input
-                autocomplete="off"
                 label={intl.formatMessage({id: "admin-woowup.configuration.input.branchName"})}
+                autocomplete="off"
                 value={config.branchName}
                 onChange={(e: any) =>
                   setConfig({ ...config, ...{ branchName: e.target.value } })
                 }
+                suffix=".vtexcommercestable.com.br"
               />
               <Input
                 autocomplete="off"
