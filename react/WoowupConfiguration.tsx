@@ -3,6 +3,7 @@ import { useMutation, useQuery } from "react-apollo";
 import { Layout, PageBlock, Input, Button, Dropdown, Spinner, Alert } from "vtex.styleguide";
 import saveConfigGQL from "./graphql/saveConfig.gql";
 import configGQL from "./graphql/config.gql";
+import getSalesChannelsGQL from "./graphql/getSalesChannel.gql";
 import { useIntl, FormattedMessage } from 'react-intl';
 
 const downloadCategoriesOptions = [
@@ -23,11 +24,17 @@ const WoowUpConfiguration: FC = () => {
     downloadCategories: "",
     woowupVtexKey: ""
   });
+  const [channelOptions, setSalesChannels] = useState([]);
   const [success, showSuccess] = useState(false);
   const [error, showError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
-  const {loading} = useQuery(configGQL, { onCompleted: ({ config }) => setConfig(config) });
+  const {loading} = useQuery(configGQL, { onCompleted: ({ config }) => {if(config) {setConfig(config)}} });
   const [saveConfig] = useMutation(saveConfigGQL);
+
+  useQuery(getSalesChannelsGQL, { onCompleted: ({ getSalesChannels }) => {
+    const channels = getSalesChannels.map((a: { Id: any, Name: any; }) => { return {value: a.Id, label: a.Name} });
+    setSalesChannels(channels)
+  }});
 
   function save() {
     if (!config.url || !config.branchName || !config.appToken || !config.woowupVtexKey) {
@@ -103,7 +110,7 @@ const WoowUpConfiguration: FC = () => {
               <Input
                 autocomplete="off"
                 label="URL*"
-                value={config.url}
+                value={config.url ? config.url : ''}
                 onChange={(e: any) =>
                   setConfig({ ...config, ...{ url: e.target.value } })
                 }
@@ -112,7 +119,7 @@ const WoowUpConfiguration: FC = () => {
               <Input
                 label={intl.formatMessage({id: "admin-woowup.configuration.input.branchName"})}
                 autocomplete="off"
-                value={config.branchName}
+                value={config.branchName ? config.branchName : ''}
                 onChange={(e: any) =>
                   setConfig({ ...config, ...{ branchName: e.target.value } })
                 }
@@ -167,14 +174,16 @@ const WoowUpConfiguration: FC = () => {
                 onChange={(_: any, v: React.SetStateAction<string>) => 
                   setConfig({ ...config, ...{ downloadCategories: v.toString() } })}
               />
-              <Input
-                autocomplete="off"
+              <Dropdown
+                key="salesChannel"
                 label="Sales Channel"
+                options={channelOptions}
                 value={config.salesChannel}
-                onChange={(e: any) =>
-                  setConfig({ ...config, ...{ salesChannel: e.target.value } })
-                }
+                onChange={(_: any, v: React.SetStateAction<string>) => 
+                  setConfig({ ...config, ...{ salesChannel: v.toString() } })}
               />
+              <br />
+              <br />
               <div style={{marginTop: "25px", textAlign: "right"}}>
                 <Button
                   onClick={() => {

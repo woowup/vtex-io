@@ -1,5 +1,6 @@
 type Query {
   config: Configuration
+  getSalesChannels: [SalesChannel]
 }
 
 type Mutation {

@@ -9,3 +9,10 @@ type Configuration {
   downloadCategories: String
   woowupVtexKey: String
 }
+
+type SalesChannel {
+  Id: ID!
+  Name: String
+  CountryCode: String
+  CultureInfo: String
+}
