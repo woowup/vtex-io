@@ -37,7 +37,7 @@ const WoowUpConfiguration: FC = () => {
   }});
 
   function save() {
-    if (!config.url || !config.branchName || !config.appToken || !config.woowupVtexKey) {
+    if (!config.url || !config.branchName || !config.appKey || !config.appToken || !config.woowupVtexKey) {
       showError(true)
       setErrorMessage(intl.formatMessage({id: "admin-woowup.configuration.missingFieldsError"}))
       return;
@@ -128,7 +128,7 @@ const WoowUpConfiguration: FC = () => {
               />
               <Input
                 autocomplete="off"
-                label="App key"
+                label="App key*"
                 value={config.appKey}
                 onChange={(e: any) =>
                   setConfig({ ...config, ...{ appKey: e.target.value } })
