@@ -1,0 +1,15 @@
+{
+    "name": "WoowUp",
+    "headline": "Woowup App ayuda a los equipos de marketing de empresas Retail a impulsar el crecimiento de su negocio al crear relaciones valiosas con sus clientes y promover compras recurrentes.",
+    "overview": "Esta aplicación le permite conectar su tienda Vtex con su cuenta de Woowup Marketing CRM.",
+    "features": [
+      "Conecta fácilmente tus datos VTEX con Woowup para personalizar tus comunicaciones"
+    ],
+    "additionalinformation": "Se requiere una cuenta de Woowup para conectarse con Vtex",
+    "video": "",
+    "websiteURL": "https://www.woowup.com/",
+    "support": {
+        "url": "https://www.woowup.com/contacto"
+      },
+    "metricDescription": {}
+}
