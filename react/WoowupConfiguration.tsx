@@ -50,7 +50,8 @@ const WoowUpConfiguration: FC = () => {
         'vt_seller': config.seller,
         'vt_categories_enabled': config.downloadCategories,
         'vt_status': config.orderStatus,
-        'vt_f_saleschannel': config.salesChannel
+        'vt_f_saleschannel': config.salesChannel,
+        'vt_identifier': "email"
       }
 
     let request: RequestInit = {
