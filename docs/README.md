@@ -34,7 +34,7 @@ Estos son los estados por defecto disponibles para descargar:
 
 **Seller**: Opcional. Ingresamos el nombre del seller. 
 
-**App Key/App Token**: Estas claves las obtenemos siguiendo esta guía.
+**App Key/App Token**: Estas claves las obtenemos siguiendo [esta guía](https://docs.woowup.com/vtex/vtex-connect-account).
 
 **Descarga de categorias**: Elegimos si activamos o desactivamos esta opción.
 
