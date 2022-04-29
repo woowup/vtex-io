@@ -3,7 +3,7 @@
   "name": "woowup",
   "version": "0.6.0",
   "title": "WoowUp",
-  "description": "We help the marketing teams of Retail companies to boost the growth of their business by creating valuable relationships with their customers and promoting recurring purchases.",
+  "description": "The #1 full VTEX integrated Marketing CRM Platform exclusive for Retail in Latin America. Helping hundreds of marketing teams in retail brands growing their business using customer data to create better personalization and marketing automation.",
   "builders": {
     "react": "3.x",
     "messages": "1.x",
@@ -30,5 +30,9 @@
       "name": "vbase-read-write"
     }
   ],
+  "billingOptions": {
+    "type": "free",
+    "availableCountries" : ["*"]
+  },
   "$schema": "https://raw.githubusercontent.com/vtex/node-vtex-api/master/gen/manifest.schema"
 }
