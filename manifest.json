@@ -1,7 +1,7 @@
 {
   "vendor": "woowup",
   "name": "woowup",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "title": "woowup dev",
   "description": "woowup dev testing bla",
   "builders": {
