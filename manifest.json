@@ -2,8 +2,8 @@
   "vendor": "woowup",
   "name": "woowup",
   "version": "0.4.0",
-  "title": "woowup dev",
-  "description": "woowup dev testing bla",
+  "title": "WoowUp",
+  "description": "We help the marketing teams of Retail companies to boost the growth of their business by creating valuable relationships with their customers and promoting recurring purchases.",
   "builders": {
     "react": "3.x",
     "messages": "1.x",
