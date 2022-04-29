@@ -8,5 +8,7 @@
   "admin-woowup.configuration.success": "Your account has been linked successfully",
   "admin-woowup.configuration.unexpectedError": "Unexpected error. Please, try again or contact our support team.",
   "admin-woowup.configuration.missingFieldsError": "Missing required fields",
-  "admin-woowup.configuration.invalidCredentials": "Invalid WoowUp key"
+  "admin-woowup.configuration.invalidCredentials": "Invalid WoowUp key",
+  "admin-woowup.configuration.documentation": "You can find the instructions on how to activate VTEX in our WoowUp documentation",
+  "admin-woowup.configuration.vtexLink": "VTEX Integration"
 }

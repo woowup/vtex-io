@@ -8,6 +8,7 @@
   "admin-woowup.configuration.success": "Tu cuenta fue vinculada satisfactoriamente",
   "admin-woowup.configuration.unexpectedError": "Ocurrió un error inesperado. Intenta nuevamente o contacta a nuestro soporte.",
   "admin-woowup.configuration.missingFieldsError": "Debe completar todos los campos requeridos.",
-  "admin-woowup.configuration.invalidCredentials": "La clave WoowUp es inválida"
-
+  "admin-woowup.configuration.invalidCredentials": "La clave WoowUp es inválida",
+  "admin-woowup.configuration.documentation": "Puedes encontrar todas las instrucciones sobre como realizar la activación en nuestra documentación de WoowUp",
+  "admin-woowup.configuration.vtexLink": "Integración VTEX"
 }

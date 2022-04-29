@@ -1,6 +1,6 @@
 import React, { FC, useState } from "react";
 import { useMutation, useQuery } from "react-apollo";
-import { Layout, PageBlock, Input, Button, Dropdown, Spinner, Alert } from "vtex.styleguide";
+import { Layout, PageBlock, Input, Button, Dropdown, Spinner, Alert, Link } from "vtex.styleguide";
 import saveConfigGQL from "./graphql/saveConfig.gql";
 import configGQL from "./graphql/config.gql";
 import getSalesChannelsGQL from "./graphql/getSalesChannel.gql";
@@ -87,6 +87,17 @@ const WoowUpConfiguration: FC = () => {
   return (
     <Layout>
       <PageBlock title={intl.formatMessage({id: "admin-woowup.configuration.title"})} variation="full">
+        <p className="gray" style={{marginLeft: "5%", marginBottom: "3%"}}>
+          <FormattedMessage id="admin-woowup.configuration.documentation" />
+          {" "}
+          <Link
+            href="https://docs.woowup.com/vtex/vtex-app-configuracion"
+            target="_blank"
+            mediumWeigth
+          >
+            <FormattedMessage id="admin-woowup.configuration.vtexLink" />
+          </Link>
+        </p>
         {success &&
           <div style={{marginBottom: "20px"}}>
             <Alert className="mb-20" type="success" onClose={() => showSuccess(false)}>

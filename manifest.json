@@ -32,7 +32,9 @@
   ],
   "billingOptions": {
     "type": "free",
-    "availableCountries" : ["*"]
+    "availableCountries": [
+      "*"
+    ]
   },
   "$schema": "https://raw.githubusercontent.com/vtex/node-vtex-api/master/gen/manifest.schema"
 }
