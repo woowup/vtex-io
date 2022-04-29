@@ -2,7 +2,7 @@
 
 En esta guía se te detallará paso a paso como configurar la aplicación de Woowup en VTEX
 
->Antes que nada, tenemos que haber instalado la aplicación de Woowup en la Store de VTEX. 
+>Previamente, tenemos que haber instalado la aplicación de Woowup en la Store de VTEX. 
 En caso de no haberla instalado, puede acceder a nuestra [guía de instalación](https://docs.woowup.com/vtex/vtex-app-instalacion) de la aplicación.
 
 
