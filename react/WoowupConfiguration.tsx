@@ -7,8 +7,8 @@ import getSalesChannelsGQL from "./graphql/getSalesChannel.gql";
 import { useIntl, FormattedMessage } from 'react-intl';
 
 const downloadCategoriesOptions = [
-  { value: 'active', label: 'Activo' },
-  { value: 'inactive', label: 'Inactivo' },
+  { value: '1', label: 'Activo' },
+  { value: '0', label: 'Inactivo' },
 ];
 
 const WoowUpConfiguration: FC = () => {
