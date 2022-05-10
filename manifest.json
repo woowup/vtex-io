@@ -1,7 +1,7 @@
 {
   "vendor": "woowup",
   "name": "woowup",
-  "version": "1.0.0-beta.0",
+  "version": "2.0.0-beta.0",
   "title": "WoowUp",
   "description": "The #1 full VTEX integrated Marketing CRM Platform exclusive for Retail in Latin America. Helping hundreds of marketing teams in retail brands growing their business using customer data to create better personalization and marketing automation.",
   "builders": {
@@ -33,8 +33,8 @@
   "billingOptions": {
     "type": "free",
     "support": {
-        "email": "ayuda@woowup.com",
-        "url": "http://help.woowup.com"
+      "email": "ayuda@woowup.com",
+      "url": "http://help.woowup.com"
     },
     "availableCountries": [
       "*"
