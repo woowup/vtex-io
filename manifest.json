@@ -32,6 +32,10 @@
   ],
   "billingOptions": {
     "type": "free",
+    "support": {
+        "email": "ayuda@woowup.com",
+        "url": "http://help.woowup.com",
+    },
     "availableCountries": [
       "*"
     ]
