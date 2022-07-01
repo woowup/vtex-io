@@ -8,5 +8,5 @@ export const mutations = {
 
 export const queries = {
   config,
-  getSalesChannels
+  getSalesChannels,
 };

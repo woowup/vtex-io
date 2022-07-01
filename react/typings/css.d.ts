@@ -1,9 +1,9 @@
-declare module '*.css' {
+declare module "*.css" {
   type Styles = {
-    [selector: string]: string
-  }
+    [selector: string]: string;
+  };
 
-  const styles: Styles
+  const styles: Styles;
 
-  export default styles
+  export default styles;
 }

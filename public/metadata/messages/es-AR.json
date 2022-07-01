@@ -1,12 +1,12 @@
 {
-    "name": "WoowUp",
-    "headline": "Woowup App ayuda a las empresas a impulsar el crecimiento de su negocio creando relaciones valiosas con sus clientes..",
-    "overview": "Esta aplicación le permite conectar su tienda Vtex con su cuenta de Woowup Marketing CRM.",
-    "features": [
-      "Conecta fácilmente tus datos VTEX con Woowup para personalizar tus comunicaciones"
-    ],
-    "websiteURL": "https://www.woowup.com/",
-    "support": {
-        "url": "https://www.woowup.com/contacto"
-      }
+  "name": "WoowUp",
+  "headline": "Woowup App ayuda a las empresas a impulsar el crecimiento de su negocio creando relaciones valiosas con sus clientes..",
+  "overview": "Esta aplicación le permite conectar su tienda Vtex con su cuenta de Woowup Marketing CRM.",
+  "features": [
+    "Conecta fácilmente tus datos VTEX con Woowup para personalizar tus comunicaciones"
+  ],
+  "websiteURL": "https://www.woowup.com/",
+  "support": {
+    "url": "https://www.woowup.com/contacto"
+  }
 }
