@@ -10,5 +10,7 @@
   "admin/admin-woowup.configuration.missingFieldsError": "Debe completar todos los campos requeridos.",
   "admin/admin-woowup.configuration.invalidCredentials": "La clave WoowUp es inválida",
   "admin/admin-woowup.configuration.documentation": "Puedes encontrar todas las instrucciones sobre como realizar la activación en nuestra documentación de WoowUp",
-  "admin/admin-woowup.configuration.vtexLink": "Integración VTEX"
+  "admin/admin-woowup.configuration.vtexLink": "Integración VTEX",
+  "admin/admin-woowup.configuration.activeCategories": "Activo",
+  "admin/admin-woowup.configuration.inactiveCategories": "Inactivo"
 }

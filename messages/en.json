@@ -10,5 +10,7 @@
   "admin/admin-woowup.configuration.missingFieldsError": "Missing required fields",
   "admin/admin-woowup.configuration.invalidCredentials": "Invalid WoowUp key",
   "admin/admin-woowup.configuration.documentation": "You can find the instructions on how to activate VTEX in our WoowUp documentation",
-  "admin/admin-woowup.configuration.vtexLink": "VTEX Integration"
+  "admin/admin-woowup.configuration.vtexLink": "VTEX Integration",
+  "admin/admin-woowup.configuration.activeCategories": "Active",
+  "admin/admin-woowup.configuration.inactiveCategories": "Inactive"
 }

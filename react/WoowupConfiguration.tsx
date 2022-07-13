@@ -17,11 +17,6 @@ import saveConfigGQL from "./graphql/saveConfig.gql";
 import configGQL from "./graphql/config.gql";
 import getSalesChannelsGQL from "./graphql/getSalesChannel.gql";
 
-const downloadCategoriesOptions = [
-  { value: "1", label: "Activo" },
-  { value: "0", label: "Inactivo" },
-];
-
 const WoowUpConfiguration: FC = () => {
   const intl = useIntl();
   const [config, setConfig] = useState({
@@ -49,6 +44,18 @@ const WoowUpConfiguration: FC = () => {
   });
 
   const [saveConfig] = useMutation(saveConfigGQL);
+  const activeMessage = intl.formatMessage({
+    id: "admin/admin-woowup.configuration.activeCategories",
+  });
+
+  const inactiveMessage = intl.formatMessage({
+    id: "admin/admin-woowup.configuration.inactiveCategories",
+  });
+
+  const downloadCategoriesOptions = [
+    { value: "1", label: activeMessage },
+    { value: "0", label: inactiveMessage },
+  ];
 
   useQuery(getSalesChannelsGQL, {
     onCompleted: ({ getSalesChannels }) => {
