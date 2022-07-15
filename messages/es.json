@@ -1,7 +1,6 @@
 {
   "admin/admin-woowup.navigation.label": "WoowUp",
   "admin/admin-woowup.configuration.title": "Configuración WoowUp",
-  "admin/admin-woowup.configuration.input.branchName": "Nombre de la tienda*",
   "admin/admin-woowup.configuration.input.orderStatus": "Estados de venta para descargar",
   "admin/admin-woowup.configuration.input.categories": "Descarga de categorías",
   "admin/admin-woowup.configuration.save": "Guardar",

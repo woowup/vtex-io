@@ -5,12 +5,12 @@ type Query {
 
 type Mutation {
   saveConfig(config: ConfigurationInput): String
+  sendToWoowup(config: ConfigurationInput): Int
 }
 
 input ConfigurationInput {
   url: String
   orderStatus: String
-  branchName: String
   seller: String
   appKey: String
   appToken: String

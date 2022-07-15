@@ -16,13 +16,13 @@ import { useIntl, FormattedMessage } from "react-intl";
 import saveConfigGQL from "./graphql/saveConfig.gql";
 import configGQL from "./graphql/config.gql";
 import getSalesChannelsGQL from "./graphql/getSalesChannel.gql";
+import sendToWoowupGQL from "./graphql/sendToWoowup.gql";
 
 const WoowUpConfiguration: FC = () => {
   const intl = useIntl();
-  const [config, setConfig] = useState({
+  const [fields, setFields] = useState({
     url: "",
     orderStatus: "",
-    branchName: "",
     seller: "",
     appKey: "",
     appToken: "",
@@ -36,14 +36,15 @@ const WoowUpConfiguration: FC = () => {
   const [error, showError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const { loading } = useQuery(configGQL, {
-    onCompleted: ({ conf }) => {
-      if (conf) {
-        setConfig(conf);
+    onCompleted: ({ config }) => {
+      if (config) {
+        setFields(config);
       }
     },
   });
 
   const [saveConfig] = useMutation(saveConfigGQL);
+  const [sendConfig] = useMutation(sendToWoowupGQL);
   const activeMessage = intl.formatMessage({
     id: "admin/admin-woowup.configuration.activeCategories",
   });
@@ -69,11 +70,10 @@ const WoowUpConfiguration: FC = () => {
 
   function save() {
     if (
-      !config.url ||
-      !config.branchName ||
-      !config.appKey ||
-      !config.appToken ||
-      !config.woowupVtexKey
+      !fields.url ||
+      !fields.appKey ||
+      !fields.appToken ||
+      !fields.woowupVtexKey
     ) {
       showError(true);
       setErrorMessage(
@@ -85,38 +85,19 @@ const WoowUpConfiguration: FC = () => {
       return;
     }
 
-    const body = {
-      vt_store: config.url,
-      vt_name: config.branchName,
-      vt_appkey: config.appKey,
-      vt_apptoken: config.appToken,
-      vt_seller: config.seller,
-      vt_categories_enabled: config.downloadCategories,
-      vt_status: config.orderStatus,
-      vt_f_saleschannel: config.salesChannel,
-      vt_identifier: "email",
-    };
-
-    const request: RequestInit = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: config.woowupVtexKey,
+    sendConfig({
+      variables: {
+        config: fields,
       },
-      body: JSON.stringify(body),
-    };
-
-    fetch("https://admin.woowup.com/apiv3/vtex/integration", request)
-      .then((r) => r.json().then((data) => ({ status: r.status, body: data })))
-      .then((response) => {
-        if (response.status === 200) {
-          showSuccess(true);
+    })
+      .then((res) => {
+        if (res.data.sendToWoowup === 200) {
           saveConfig({
             variables: {
-              config,
+              config: fields,
             },
-          });
-        } else if (response.status === 403) {
+          }).then((_r) => showSuccess(true));
+        } else if (res.data.sendToWoowup === 403) {
           showError(true);
           setErrorMessage(
             intl.formatMessage({
@@ -125,7 +106,11 @@ const WoowUpConfiguration: FC = () => {
           );
         } else {
           showError(true);
-          setErrorMessage(response.body.message);
+          setErrorMessage(
+            intl.formatMessage({
+              id: "admin/admin-woowup.configuration.unexpectedError",
+            })
+          );
         }
       })
       .catch((_e) => {
@@ -187,45 +172,36 @@ const WoowUpConfiguration: FC = () => {
               <Input
                 autocomplete="off"
                 label="URL*"
-                value={config.url ? config.url : ""}
+                value={fields.url ? fields.url : ""}
                 onChange={(e: any) =>
-                  setConfig({ ...config, ...{ url: e.target.value } })
+                  setFields({ ...fields, ...{ url: e.target.value } })
                 }
-              />
-
-              <Input
-                label={intl.formatMessage({
-                  id: "admin/admin-woowup.configuration.input.branchName",
-                })}
-                autocomplete="off"
-                value={config.branchName ? config.branchName : ""}
-                onChange={(e: any) =>
-                  setConfig({ ...config, ...{ branchName: e.target.value } })
-                }
-                suffix=".vtexcommercestable.com.br"
               />
               <Input
                 autocomplete="off"
-                label="App key*"
-                value={config.appKey}
+                label="App Key*"
+                value={fields.appKey}
                 onChange={(e: any) =>
-                  setConfig({ ...config, ...{ appKey: e.target.value } })
+                  setFields({ ...fields, ...{ appKey: e.target.value } })
                 }
               />
               <Input
                 autocomplete="off"
                 label="App Token*"
-                value={config.appToken}
+                value={fields.appToken}
                 onChange={(e: any) =>
-                  setConfig({ ...config, ...{ appToken: e.target.value } })
+                  setFields({ ...fields, ...{ appToken: e.target.value } })
                 }
               />
               <Input
                 autocomplete="off"
                 label="WoowUp VTEX Token*"
-                value={config.woowupVtexKey}
+                value={fields.woowupVtexKey}
                 onChange={(e: any) =>
-                  setConfig({ ...config, ...{ woowupVtexKey: e.target.value } })
+                  setFields({
+                    ...fields,
+                    ...{ woowupVtexKey: e.target.value },
+                  })
                 }
               />
             </div>
@@ -238,17 +214,17 @@ const WoowUpConfiguration: FC = () => {
                 label={intl.formatMessage({
                   id: "admin/admin-woowup.configuration.input.orderStatus",
                 })}
-                value={config.orderStatus}
+                value={fields.orderStatus}
                 onChange={(e: any) =>
-                  setConfig({ ...config, ...{ orderStatus: e.target.value } })
+                  setFields({ ...fields, ...{ orderStatus: e.target.value } })
                 }
               />
               <Input
                 autocomplete="off"
                 label="Seller"
-                value={config.seller}
+                value={fields.seller}
                 onChange={(e: any) =>
-                  setConfig({ ...config, ...{ seller: e.target.value } })
+                  setFields({ ...fields, ...{ seller: e.target.value } })
                 }
               />
               <Dropdown
@@ -256,10 +232,10 @@ const WoowUpConfiguration: FC = () => {
                   id: "admin/admin-woowup.configuration.input.categories",
                 })}
                 options={downloadCategoriesOptions}
-                value={config.downloadCategories}
+                value={fields.downloadCategories}
                 onChange={(_: any, v: React.SetStateAction<string>) =>
-                  setConfig({
-                    ...config,
+                  setFields({
+                    ...fields,
                     ...{ downloadCategories: v.toString() },
                   })
                 }
@@ -268,14 +244,12 @@ const WoowUpConfiguration: FC = () => {
                 key="salesChannel"
                 label="Sales Channel"
                 options={channelOptions}
-                value={config.salesChannel}
+                value={fields.salesChannel}
                 onChange={(_: any, v: React.SetStateAction<string>) =>
-                  setConfig({ ...config, ...{ salesChannel: v.toString() } })
+                  setFields({ ...fields, ...{ salesChannel: v.toString() } })
                 }
               />
-              <br />
-              <br />
-              <div style={{ marginTop: "25px", textAlign: "right" }}>
+              <div style={{ textAlign: "right" }}>
                 <Button
                   onClick={() => {
                     save();

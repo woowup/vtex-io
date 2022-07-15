@@ -2,7 +2,6 @@ query config {
   config {
     url
     orderStatus
-    branchName
     seller
     appKey
     appToken

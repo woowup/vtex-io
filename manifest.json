@@ -28,6 +28,13 @@
     },
     {
       "name": "vbase-read-write"
+    },
+    {
+      "name": "outbound-access",
+      "attrs": {
+        "host": "admin.woowup.com",
+        "path": "/apiv3/vtex/*"
+      }
     }
   ],
   "billingOptions": {

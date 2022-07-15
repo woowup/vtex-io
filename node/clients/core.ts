@@ -22,4 +22,8 @@ export default class CoreClient extends JanusClient {
       .then((salesChannels) => {
         return salesChannels.filter((sc: any) => sc.IsActive);
       });
+
+  public getAccountName = () => {
+    return this.context.account;
+  }
 }

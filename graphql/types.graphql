@@ -1,7 +1,6 @@
 type Configuration {
   url: String
   orderStatus: String
-  branchName: String
   seller: String
   appKey: String
   appToken: String

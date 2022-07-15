@@ -1,0 +1,3 @@
+mutation sendToWoowup($config: ConfigurationInput) {
+  sendToWoowup(config: $config)
+}

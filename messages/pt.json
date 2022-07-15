@@ -1,7 +1,6 @@
 {
   "admin/admin-woowup.navigation.label": "WoowUp",
   "admin/admin-woowup.configuration.title": "Configuración WoowUp",
-  "admin/admin-woowup.configuration.input.branchName": "Account name*",
   "admin/admin-woowup.configuration.input.orderStatus": "Order status",
   "admin/admin-woowup.configuration.input.categories": "Download categories",
   "admin/admin-woowup.configuration.save": "Save",
