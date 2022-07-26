@@ -195,7 +195,7 @@ const WoowUpConfiguration: FC = () => {
               />
               <Input
                 autocomplete="off"
-                label="WoowUp VTEX Token*"
+                label="WoowUp VTEX Key*"
                 value={fields.woowupVtexKey}
                 onChange={(e: any) =>
                   setFields({

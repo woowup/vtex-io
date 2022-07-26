@@ -1,4 +1,7 @@
-import axios from 'axios';
+const DEFAULT_IDENTIFIER = 'email';
+const HTTP_OK_MESSAGE = 'ok';
+const HTTP_OK = 200;
+const HTTP_ERROR = 500;
 
 export default async function sendToWoowup(_: any, { config }: any, ctx: Context) {
   const body = {
@@ -10,21 +13,19 @@ export default async function sendToWoowup(_: any, { config }: any, ctx: Context
     vt_categories_enabled: config.downloadCategories,
     vt_status: config.orderStatus,
     vt_f_saleschannel: config.salesChannel,
-    vt_identifier: "email",
+    vt_identifier: DEFAULT_IDENTIFIER,
   };
-  
-  const headers = {
-    "Content-Type": "application/json",
-    "Authorization": config.woowupVtexKey,
-  }
 
-  return await axios.post("https://admin.woowup.com/apiv3/vtex/integration", body, { headers })
+  return await ctx.clients.woowup.updateConfiguration(body, config.woowupVtexKey)
     .then((r: any) => {
-      return { status: r.status, body }})
+      return { status: r.code, body }})
     .then((response: any) => {
-      return response.status;
+      if (response.status === HTTP_OK_MESSAGE) {
+        return HTTP_OK;
+      }
+      return HTTP_ERROR;
     })
     .catch(_e => {
-      return 500;
+      return HTTP_ERROR;
     })
 }
