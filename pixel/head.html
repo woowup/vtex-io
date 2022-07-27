@@ -1,5 +1,4 @@
-<script src="https://assets-cdn.woowup.com/js/push-notifications.min.js" type="text/javascript"></script>
-<script>
+<script id="wu-push-script">
     (function() {
       const publicKey = "{{settings.wu-PublicKey}}";
       const instanceId = "{{settings.wu-InstanceId}}";
@@ -13,6 +12,12 @@
         return;
       }
 
-      WU.pushNotifications(publicKey, instanceId);
+        var script=document.createElement("script");
+        var parent=document.getElementById("wu-push-script").parentNode;
+        var date = (new Date()).toISOString().split('T')[0]
+        script.src="https://assets-cdn.woowup.com/js/push-notifications.min.js?v="+date;
+        parent.appendChild(script);
+
+        WU.pushNotifications(publicKey, instanceId);
     })()
 </script>
