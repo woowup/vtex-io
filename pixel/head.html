@@ -1,0 +1,18 @@
+<script src="https://assets-cdn.woowup.com/js/push-notifications.min.js" type="text/javascript"></script>
+<script>
+    (function() {
+      const publicKey = "{{settings.wu-PublicKey}}";
+      const instanceId = "{{settings.wu-InstanceId}}";
+      if (!publicKey) {
+        console.error('Warning: No WOOWUP PUBLIC KEY is defined. Please configure it in the apps admin.');
+        return;
+      }
+
+      if (!instanceId) {
+        console.error('Warning: No WOOWUP INSTANCE ID is defined. Please configure it in the apps admin.');
+        return;
+      }
+
+      WU.pushNotifications(publicKey, instanceId);
+    })()
+</script>

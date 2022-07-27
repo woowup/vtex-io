@@ -10,7 +10,9 @@
     "docs": "0.x",
     "admin": "0.x",
     "node": "6.x",
-    "graphql": "1.x"
+    "graphql": "1.x",
+    "pixel": "0.x",
+    "service-worker": "0.x"
   },
   "dependencies": {
     "vtex.styleguide": "9.x"
@@ -46,6 +48,22 @@
     "availableCountries": [
       "*"
     ]
+  },
+  "settingsSchema": {
+    "title": "WoowUp",
+    "type": "object",
+    "properties": {
+      "wu-PublicKey": {
+        "title": "Public Key",
+        "description": "Enter your WoowUp Public Key",
+        "type": "string"
+      },
+      "wu-InstanceId": {
+        "title": "Instance ID",
+        "description": "Enter your WoowUp Push Instance ID",
+        "type": "string"
+      }
+    }
   },
   "$schema": "https://raw.githubusercontent.com/vtex/node-vtex-api/master/gen/manifest.schema"
 }
