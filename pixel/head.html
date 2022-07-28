@@ -18,7 +18,6 @@
         script.src="https://assets-cdn.woowup.com/js/push-notifications.min.js?v="+date;
         script.addEventListener('load', () => {
             WU.pushNotifications(publicKey, instanceId);
-            console.log('no lo hizo xd')
         });
         parent.appendChild(script);
 
