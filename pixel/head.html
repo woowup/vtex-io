@@ -1,5 +1,9 @@
 <script id="wu-push-script">
     (function() {
+      const pushIsEnabled = "{{settings.allowWupPushNotifications}}"
+      if (!pushIsEnabled) {
+        return;
+      }
       const publicKey = "{{settings.wu-PublicKey}}";
       const instanceId = "{{settings.wu-InstanceId}}";
       if (!publicKey) {

@@ -62,6 +62,14 @@
         "title": "Instance ID",
         "description": "Enter your WoowUp Push Instance ID",
         "type": "string"
+      },
+      "allowWupWebTracking": {
+        "title": "Enable Webtracking",
+        "type": "boolean"
+      },
+      "allowWupPushNotifications": {
+        "title": "Enable Push Notifications",
+        "type": "boolean"
       }
     }
   },
