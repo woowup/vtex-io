@@ -10,11 +10,7 @@ export default function () {
 }
 
 export function handleEvents(e: PixelMessage) {
-  // eslint-disable-next-line no-console
-  console.log("HOLA");
-  if (e.data.eventName === "vtex:productImpression") {
-    // eslint-disable-next-line no-console
-    console.log("EVENTO: ", e);
+  if (e.data.eventName === "vtex:productView") {
     sendWebTrackingEvents(e);
   }
 }

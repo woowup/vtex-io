@@ -12,10 +12,12 @@
     "node": "6.x",
     "graphql": "1.x",
     "pixel": "0.x",
-    "service-worker": "0.x"
+    "service-worker": "0.x",
+    "store": "0.x"
   },
   "dependencies": {
-    "vtex.styleguide": "9.x"
+    "vtex.styleguide": "9.x",
+    "vtex.pixel-interfaces": "1.x"
   },
   "registries": [
     "smartcheckout"
