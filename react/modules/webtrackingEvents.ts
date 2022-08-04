@@ -4,10 +4,13 @@ export async function sendWebTrackingEvents(e: PixelMessage) {
   const { product } = e.data;
   const price = getPrice(product);
   const listPrice = getListPrice(product);
+  const productId = product.productId.toString();
 
   const trackingMetadata = {
-    sku: product.selectedSku.referenceId[0]?.Value,
-    parentId: product.productId,
+    sku: product.selectedSku?.referenceId
+      ? product.selectedSku.referenceId[0].Value
+      : productId,
+    parentId: productId,
     price,
     offer_price: null,
   };
@@ -23,10 +26,7 @@ export async function sendWebTrackingEvents(e: PixelMessage) {
     trackingMetadata.offer_price = null;
   }
 
-  // eslint-disable-next-line no-console
-  console.log("raw data", product);
-  // eslint-disable-next-line no-console
-  console.log("md", trackingMetadata);
+  window.trackProductViewEvent(trackingMetadata);
 }
 
 function getPrice(productData: Product) {
