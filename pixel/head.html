@@ -6,20 +6,20 @@
       console.warn('Warning: No WOOWUP PUBLIC KEY is defined. Please configure it in the apps admin.');
       return;
     }
+
     if (!webtrackingIsEnabled || webtrackingIsEnabled === 'false') {
       console.warn('Warning: WoowUp Webtracking is not enabled. Please configure it in the apps admin.');
       return;
     }
 
-    var script=document.createElement("script");
-    var parent=document.getElementById("wu-tracking-script").parentNode;
+    var script = document.createElement("script");
+    var parent = document.getElementById("wu-tracking-script").parentNode;
     var date = (new Date()).toISOString().split('T')[0];
-    script.src="https://assets-cdn.woowup.com/js/webtracking.min.js?v="+date;
+    script.src = "https://assets-cdn.woowup.com/js/webtracking.min.js?v=" + date;
     script.addEventListener('load', () => {
       console.info("WoowUp Webtracking Script loaded")
     });
     parent.appendChild(script);
-
     window.trackProductViewEvent = function (metadata) {
       if (publicKey && webtrackingIsEnabled && webtrackingIsEnabled !== "false") {
         WU.track(publicKey, 'product-view', metadata);
@@ -29,12 +29,12 @@
 </script>
 <script id="wu-push-script">
   (function() {
-    const pushIsEnabled = "{{settings.allowWupPushNotifications}}"
-
+    const pushIsEnabled = "{{settings.allowWupPushNotifications}}";
     if (!pushIsEnabled || pushIsEnabled === "false") {
       console.warn('Warning: WoowUp Push Notifications is not enabled. Please configure it in the apps admin.');
       return;
     }
+
     const publicKey = "{{settings.wu-PublicKey}}";
     const instanceId = "{{settings.wu-InstanceId}}";
     if (!publicKey) {
@@ -47,10 +47,10 @@
       return;
     }
 
-    var script=document.createElement("script");
-    var parent=document.getElementById("wu-push-script").parentNode;
+    var script = document.createElement("script");
+    var parent = document.getElementById("wu-push-script").parentNode;
     var date = (new Date()).toISOString().split('T')[0];
-    script.src="https://assets-cdn.woowup.com/js/push-notifications.min.js?v="+date;
+    script.src = "https://assets-cdn.woowup.com/js/push-notifications.min.js?v=" + date;
     script.addEventListener('load', () => {
       if (publicKey && instanceId && pushIsEnabled && pushIsEnabled !== "false") {
         WU.pushNotifications(publicKey, instanceId);
