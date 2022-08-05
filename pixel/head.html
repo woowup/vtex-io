@@ -1,7 +1,5 @@
-<script src="https://assets-cdn.woowup.com/js/webtracking.min.js" type="text/javascript"></script>
 <script type="text/javascript" id="wu-tracking-script">
   (function() {
-    window.trackProductViewEvent = _trackProductViewEvent;
     const webtrackingIsEnabled = "{{settings.allowWupWebTracking}}";
     const publicKey = "{{settings.wu-PublicKey}}";
     if (!publicKey) {
@@ -22,7 +20,7 @@
     });
     parent.appendChild(script);
 
-    function _trackProductViewEvent(metadata) {
+    window.trackProductViewEvent = function (metadata) {
       if (publicKey && webtrackingIsEnabled && webtrackingIsEnabled !== "false") {
         WU.track(publicKey, 'product-view', metadata);
       }
