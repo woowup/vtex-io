@@ -1,7 +1,7 @@
 {
   "vendor": "woowup",
   "name": "woowup",
-  "version": "3.2.0",
+  "version": "3.1.0",
   "title": "WoowUp",
   "description": "The #1 full VTEX integrated Marketing CRM Platform exclusive for Retail in Latin America. Helping hundreds of marketing teams in retail brands growing their business using customer data to create better personalization and marketing automation.",
   "builders": {
@@ -10,14 +10,10 @@
     "docs": "0.x",
     "admin": "0.x",
     "node": "6.x",
-    "graphql": "1.x",
-    "pixel": "0.x",
-    "service-worker": "0.x",
-    "store": "0.x"
+    "graphql": "1.x"
   },
   "dependencies": {
-    "vtex.styleguide": "9.x",
-    "vtex.pixel-interfaces": "1.x"
+    "vtex.styleguide": "9.x"
   },
   "registries": [
     "smartcheckout"
@@ -50,30 +46,6 @@
     "availableCountries": [
       "*"
     ]
-  },
-  "settingsSchema": {
-    "title": "WoowUp",
-    "type": "object",
-    "properties": {
-      "wu-PublicKey": {
-        "title": "Public Key",
-        "description": "Enter your WoowUp Public Key",
-        "type": "string"
-      },
-      "wu-InstanceId": {
-        "title": "Instance ID",
-        "description": "Enter your WoowUp Push Instance ID",
-        "type": "string"
-      },
-      "allowWupWebTracking": {
-        "title": "Enable Webtracking",
-        "type": "boolean"
-      },
-      "allowWupPushNotifications": {
-        "title": "Enable Push Notifications",
-        "type": "boolean"
-      }
-    }
   },
   "$schema": "https://raw.githubusercontent.com/vtex/node-vtex-api/master/gen/manifest.schema"
 }
