@@ -18,13 +18,14 @@
       script.src = "https://assets-cdn.woowup.com/js/webtracking.min.js?v=" + date;
       script.addEventListener('load', () => {
         console.info("WoowUp Webtracking Script loaded")
+        window.trackProductViewEvent = function (metadata) {
+          if (publicKey && webtrackingIsEnabled && webtrackingIsEnabled !== "false") {
+            WU.track(publicKey, 'product-view', metadata);
+          }
+        }
       });
       parent.appendChild(script);
-      window.trackProductViewEvent = function (metadata) {
-        if (publicKey && webtrackingIsEnabled && webtrackingIsEnabled !== "false") {
-          WU.track(publicKey, 'product-view', metadata);
-        }
-      }
+
     })()
   </script>
   <script id="wu-push-script">
