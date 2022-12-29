@@ -12,7 +12,6 @@
     "node": "6.x",
     "graphql": "1.x",
     "pixel": "0.x",
-    "service-worker": "0.x",
     "store": "0.x"
   },
   "dependencies": {
