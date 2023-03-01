@@ -1,6 +1,7 @@
 import {
   ClientsConfig,
   Service,
+  method,
   ServiceContext,
 } from "@vtex/api";
 
@@ -25,6 +26,14 @@ declare global {
   type Context = ServiceContext<Clients>;
 }
 
+async function worker(ctx: ServiceContext, next: () => Promise<unknown>) {
+  ctx.status = 200
+  ctx.set('content-type', 'application/javascript; charset=utf-8')
+  ctx.set('cache-control', 'public, max-age=7200')
+  ctx.body = `importScripts('https://js.pusher.com/beams/service-worker.js');`
+  await next()
+}
+
 // Export a service that defines route handlers and client options.
 export default new Service({
   clients,
@@ -38,4 +47,10 @@ export default new Service({
       },
     },
   },
+  routes: {
+    "service-worker": method({
+      GET: [worker],
+    })
+  },
+
 });
