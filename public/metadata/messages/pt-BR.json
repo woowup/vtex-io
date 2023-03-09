@@ -1,10 +1,15 @@
 {
   "name": "WoowUp",
-  "headline": "Woowup ajuda as empresas a impulsionar o crescimento de seus negócios criando relacionamentos valiosos com seus clientes",
+  "headline": "WoowUp ajuda os varejistas a criar relacionamentos duradouros com seus clientes para impulsionar seus resultados de negócios.",
   "overview": "Este aplicativo permite que você conecte sua loja Vtex com sua conta Woowup Marketing CRM.",
   "features": [
-    "Conecte facilmente seus dados VTEX com Woowup para personalizar suas comunicações"
+    "Unifique os dados que você tem de seus clientes em seus sistemas (Vtex, ERP, etc.) criando um perfil único automaticamente",
+    "Conheça e segmente seus clientes em simples cliques",
+    "Torne suas campanhas de marketing relevantes e personalizadas",
+    "Meça o impacto de suas campanhas omnichannel online e offline",
+    "Descubra como maximizar o uso do seu banco de dados"
   ],
+  "video": "https://www.youtube.com/embed/vCM9lgOs1OQ",
   "websiteURL": "https://www.woowup.com/",
   "support": {
     "url": "https://www.woowup.com/contacto"
