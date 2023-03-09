@@ -1,7 +1,7 @@
 {
   "name": "WoowUp",
   "headline": "WoowUp helps retailers to create longlife relationships with their customers to boost their business results.",
-  "overview": "This app allow you to connect your Vtex Store with your Woowup Marketing CRM Account.",
+  "overview": "At WoowUp we help the marketing teams of Retail companies to strengthen the relationship with their customers and increase the recurrence of purchases by knowing their consumption habits. This application will allow you to connect your e-commerce with the Woowup platform and access features such as Smart Web Push Notifications and Web Tracking in a simple way.\nOur CRM allows you to intelligently manage your database, create segments and automate communications.",
   "features": [
     "Unify the data you have from your customers in your systems (Vtex, ERP, etc.) creating a unique profile automatically",
     "Know and segment your customers in simple clicks",
@@ -9,7 +9,7 @@
     "Measure the impact of your omnichannel campaigns online and offline",
     "Discover how to maximize the use of your database"
   ],
-  "video": "https://www.youtube.com/embed/vCM9lgOs1OQ",
+  "video": "https://www.youtube.com/embed/vCM9lgOs1OQ>",
   "websiteURL": "https://www.woowup.com/",
   "support": {
     "url": "https://www.woowup.com/contacto"
