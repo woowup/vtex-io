@@ -30,7 +30,7 @@ async function worker(ctx: ServiceContext, next: () => Promise<unknown>) {
   ctx.status = 200
   ctx.set('content-type', 'application/javascript; charset=utf-8')
   ctx.set('cache-control', 'public, max-age=7200')
-  ctx.body = `importScripts('https://js.pusher.com/beams/service-worker.js');`
+  ctx.body = `importScripts('https://js.pusher.com/7.0/pusher.worker.min.js');`
   await next()
 }
 
