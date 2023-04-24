@@ -31,7 +31,7 @@
       const pushIsEnabled = "{{settings.allowWupPushNotifications}}";
       if (!pushIsEnabled || pushIsEnabled === "false") {
         console.warn('Warning: WoowUp Push Notifications is not enabled. Please configure it in the apps admin.');
-        return;
+        return
       }
 
       const publicKey = "{{settings.wu-PublicKey}}";
@@ -43,11 +43,6 @@
 
       if (!instanceId) {
         console.warn('Warning: No WOOWUP INSTANCE ID is defined. Please configure it in the apps admin.');
-        return;
-      }
-
-      if (!pushIsEnabled || pushIsEnabled === "false") {
-        console.warn('Warning: activate push in admin to use it.')
         return;
       }
 
