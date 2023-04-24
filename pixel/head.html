@@ -46,11 +46,6 @@
         return;
       }
 
-      if (!pushIsEnabled || pushIsEnabled === "false") {
-        console.warn('Warning: activate push in admin to use it.')
-        return;
-      }
-
       if (! ('serviceWorker' in navigator)) {
         console.warn('Service workers are not supported. Please activate or change/update browser');
         return;
