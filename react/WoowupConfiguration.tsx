@@ -28,7 +28,6 @@ const WoowUpConfiguration: FC = () => {
     appToken: "",
     salesChannel: "",
     downloadCategories: "",
-    woowupVtexKey: "",
   });
 
   const [channelOptions, setSalesChannels] = useState([]);
@@ -69,12 +68,7 @@ const WoowUpConfiguration: FC = () => {
   });
 
   function save() {
-    if (
-      !fields.url ||
-      !fields.appKey ||
-      !fields.appToken ||
-      !fields.woowupVtexKey
-    ) {
+    if (!fields.url || !fields.appKey || !fields.appToken) {
       showError(true);
       setErrorMessage(
         intl.formatMessage({
@@ -193,15 +187,13 @@ const WoowUpConfiguration: FC = () => {
                   setFields({ ...fields, ...{ appToken: e.target.value } })
                 }
               />
-              <Input
-                autocomplete="off"
-                label="WoowUp VTEX Key*"
-                value={fields.woowupVtexKey}
-                onChange={(e: any) =>
-                  setFields({
-                    ...fields,
-                    ...{ woowupVtexKey: e.target.value },
-                  })
+              <Dropdown
+                key="salesChannel"
+                label="Sales Channel"
+                options={channelOptions}
+                value={fields.salesChannel}
+                onChange={(_: any, v: React.SetStateAction<string>) =>
+                  setFields({ ...fields, ...{ salesChannel: v.toString() } })
                 }
               />
             </div>
@@ -240,27 +232,20 @@ const WoowUpConfiguration: FC = () => {
                   })
                 }
               />
-              <Dropdown
-                key="salesChannel"
-                label="Sales Channel"
-                options={channelOptions}
-                value={fields.salesChannel}
-                onChange={(_: any, v: React.SetStateAction<string>) =>
-                  setFields({ ...fields, ...{ salesChannel: v.toString() } })
-                }
-              />
-              <div style={{ textAlign: "right" }}>
-                <Button
-                  onClick={() => {
-                    save();
-                  }}
-                >
-                  <FormattedMessage id="admin/admin-woowup.configuration.save" />
-                </Button>
-              </div>
+
             </div>
           </div>
+
         )}
+        <div style={{ textAlign: "right", marginRight: "5%" }}>
+          <Button
+            onClick={() => {
+              save();
+            }}
+          >
+            <FormattedMessage id="admin/admin-woowup.configuration.save" />
+          </Button>
+        </div>
       </PageBlock>
     </Layout>
   );

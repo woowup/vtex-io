@@ -20,4 +20,15 @@ export default class WoowupClient extends ExternalClient {
       headers
     })
   }
+
+  public async getConfiguration(vtexKey: string): Promise<any> {
+    const headers = {
+      "Content-Type": "application/json",
+      "Authorization": vtexKey,
+    }
+
+    return this.http.get('', {
+      headers
+    })
+  }
 }

@@ -16,5 +16,4 @@ input ConfigurationInput {
   appToken: String
   salesChannel: String
   downloadCategories: String
-  woowupVtexKey: String
 }

@@ -7,6 +7,5 @@ query config {
     appToken
     salesChannel
     downloadCategories
-    woowupVtexKey
   }
 }
