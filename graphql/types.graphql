@@ -6,6 +6,7 @@ type Configuration {
   appToken: String
   salesChannel: String
   downloadCategories: String
+  woowupVtexKey: String
 }
 
 type SalesChannel {

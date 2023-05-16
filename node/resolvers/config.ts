@@ -19,7 +19,8 @@ export default async function config(_: any, __: any, ctx: Context) {
             appKey: wupConfig.vt_appkey,
             appToken: wupConfig.vt_apptoken,
             salesChannel: wupConfig.vt_f_saleschannel,
-            downloadCategories: wupConfig.vt_categories_enabled ? '1' : '0'
+            downloadCategories: wupConfig.vt_categories_enabled ? '1' : '0',
+            woowupVtexKey: wupVtexKey
           };
         }
         return HTTP_ERROR;

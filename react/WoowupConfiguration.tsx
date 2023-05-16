@@ -28,15 +28,22 @@ const WoowUpConfiguration: FC = () => {
     appToken: "",
     salesChannel: "",
     downloadCategories: "",
+    woowupVtexKey: "",
   });
 
   const [channelOptions, setSalesChannels] = useState([]);
   const [success, showSuccess] = useState(false);
   const [error, showError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+  const [missingVtexKey, showMissingVtexKey] = useState(false);
+
   const { loading } = useQuery(configGQL, {
     onCompleted: ({ config }) => {
       if (config) {
+        if (!config.woowupVtexKey || config.woowupVtexKey === "") {
+          showMissingVtexKey(true);
+        }
+
         setFields(config);
       }
     },
@@ -153,6 +160,22 @@ const WoowUpConfiguration: FC = () => {
             </Alert>
           </div>
         )}
+        {missingVtexKey && (
+          <div style={{ marginBottom: "20px" }}>
+            <Alert type="warning">
+              <p>
+                <FormattedMessage id="admin/admin-woowup.configuration.missingVtexKey" />{" "}
+                <Link
+                  href="../apps/woowup.woowup/setup"
+                  target="_blank"
+                  mediumWeigth
+                >
+                  <FormattedMessage id="admin/admin-woowup.configuration.labels.here" />
+                </Link>
+              </p>
+            </Alert>
+          </div>
+        )}
         {loading ? (
           <div className="flex" style={{ justifyContent: "center" }}>
             <Spinner />
@@ -232,16 +255,15 @@ const WoowUpConfiguration: FC = () => {
                   })
                 }
               />
-
             </div>
           </div>
-
         )}
         <div style={{ textAlign: "right", marginRight: "5%" }}>
           <Button
             onClick={() => {
               save();
             }}
+            disabled={!fields.woowupVtexKey || fields.woowupVtexKey === ""}
           >
             <FormattedMessage id="admin/admin-woowup.configuration.save" />
           </Button>
