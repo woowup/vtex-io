@@ -35,9 +35,15 @@ const WoowUpConfiguration: FC = () => {
   const [success, showSuccess] = useState(false);
   const [error, showError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+  const [missingVtexKey, showMissingVtexKey] = useState(false);
+
   const { loading } = useQuery(configGQL, {
     onCompleted: ({ config }) => {
       if (config) {
+        if (!config.woowupVtexKey || config.woowupVtexKey === "") {
+          showMissingVtexKey(true);
+        }
+
         setFields(config);
       }
     },
@@ -69,12 +75,7 @@ const WoowUpConfiguration: FC = () => {
   });
 
   function save() {
-    if (
-      !fields.url ||
-      !fields.appKey ||
-      !fields.appToken ||
-      !fields.woowupVtexKey
-    ) {
+    if (!fields.url || !fields.appKey || !fields.appToken) {
       showError(true);
       setErrorMessage(
         intl.formatMessage({
@@ -159,6 +160,22 @@ const WoowUpConfiguration: FC = () => {
             </Alert>
           </div>
         )}
+        {missingVtexKey && (
+          <div style={{ marginBottom: "20px" }}>
+            <Alert type="warning">
+              <p>
+                <FormattedMessage id="admin/admin-woowup.configuration.missingVtexKey" />{" "}
+                <Link
+                  href="../apps/woowup.woowup/setup"
+                  target="_blank"
+                  mediumWeigth
+                >
+                  <FormattedMessage id="admin/admin-woowup.configuration.labels.here" />
+                </Link>
+              </p>
+            </Alert>
+          </div>
+        )}
         {loading ? (
           <div className="flex" style={{ justifyContent: "center" }}>
             <Spinner />
@@ -193,15 +210,13 @@ const WoowUpConfiguration: FC = () => {
                   setFields({ ...fields, ...{ appToken: e.target.value } })
                 }
               />
-              <Input
-                autocomplete="off"
-                label="WoowUp VTEX Key*"
-                value={fields.woowupVtexKey}
-                onChange={(e: any) =>
-                  setFields({
-                    ...fields,
-                    ...{ woowupVtexKey: e.target.value },
-                  })
+              <Dropdown
+                key="salesChannel"
+                label="Sales Channel"
+                options={channelOptions}
+                value={fields.salesChannel}
+                onChange={(_: any, v: React.SetStateAction<string>) =>
+                  setFields({ ...fields, ...{ salesChannel: v.toString() } })
                 }
               />
             </div>
@@ -240,27 +255,19 @@ const WoowUpConfiguration: FC = () => {
                   })
                 }
               />
-              <Dropdown
-                key="salesChannel"
-                label="Sales Channel"
-                options={channelOptions}
-                value={fields.salesChannel}
-                onChange={(_: any, v: React.SetStateAction<string>) =>
-                  setFields({ ...fields, ...{ salesChannel: v.toString() } })
-                }
-              />
-              <div style={{ textAlign: "right" }}>
-                <Button
-                  onClick={() => {
-                    save();
-                  }}
-                >
-                  <FormattedMessage id="admin/admin-woowup.configuration.save" />
-                </Button>
-              </div>
             </div>
           </div>
         )}
+        <div style={{ textAlign: "right", marginRight: "5%" }}>
+          <Button
+            onClick={() => {
+              save();
+            }}
+            disabled={!fields.woowupVtexKey || fields.woowupVtexKey === ""}
+          >
+            <FormattedMessage id="admin/admin-woowup.configuration.save" />
+          </Button>
+        </div>
       </PageBlock>
     </Layout>
   );

@@ -16,7 +16,10 @@ export default async function sendToWoowup(_: any, { config }: any, ctx: Context
     vt_identifier: DEFAULT_IDENTIFIER,
   };
 
-  return await ctx.clients.woowup.updateConfiguration(body, config.woowupVtexKey)
+  const settings = await ctx.clients.apps.getAppSettings(process.env.VTEX_APP_ID!);
+  const wupVtexKey = settings['wu-VtexKey'];
+
+  return await ctx.clients.woowup.updateConfiguration(body, wupVtexKey)
     .then((r: any) => {
       return { status: r.code, body }})
     .then((response: any) => {

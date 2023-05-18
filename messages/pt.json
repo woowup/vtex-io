@@ -11,5 +11,7 @@
   "admin/admin-woowup.configuration.documentation": "Você pode encontrar todas as instruções sobre como ativar VTEX em nossa documentação do WoowUp",
   "admin/admin-woowup.configuration.vtexLink": "Integração VTEX",
   "admin/admin-woowup.configuration.activeCategories": "Ativo",
-  "admin/admin-woowup.configuration.inactiveCategories": "Inativo"
+  "admin/admin-woowup.configuration.inactiveCategories": "Inativo",
+  "admin/admin-woowup.configuration.missingVtexKey": "Você deve primeiro configurar a chave de integração VTEX. Coloque",
+  "admin/admin-woowup.configuration.labels.here": "aqui"
 }

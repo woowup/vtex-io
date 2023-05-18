@@ -55,6 +55,11 @@
     "title": "WoowUp",
     "type": "object",
     "properties": {
+      "wu-VtexKey": {
+        "title": "WoowUp VTEX Integration Key",
+        "description": "Enter your WoowUp VTEX Integration Key",
+        "type": "string"
+      },
       "wu-PublicKey": {
         "title": "Public Key",
         "description": "Enter your WoowUp Public Key",
