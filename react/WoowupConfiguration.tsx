@@ -67,7 +67,7 @@ const WoowUpConfiguration: FC = () => {
   useQuery(getSalesChannelsGQL, {
     onCompleted: ({ getSalesChannels }) => {
       const channels = getSalesChannels.map((a: { Id: any; Name: any }) => {
-        return { value: a.Id, label: a.Name };
+        return { value: a.Name, label: a.Name };
       });
 
       setSalesChannels(channels);
