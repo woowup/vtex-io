@@ -10,7 +10,7 @@ export default function () {
 }
 
 export function handleEvents(e: PixelMessage) {
-  if (e.data.eventName === "vtex:productView") {
+  if (e.data.eventName === "vtex:productView" || e.data.eventName === "vtex:productClick") {
     sendWebTrackingEvents(e);
   }
 }
