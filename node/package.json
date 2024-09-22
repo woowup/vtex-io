@@ -4,6 +4,11 @@
     "co-body": "^6.0.0",
     "ramda": "^0.25.0"
   },
+  "resolutions": {
+    "@types/testing-library__dom": "6.12.1",
+    "@types/express": "4.16.0",
+    "@types/express-serve-static-core": "4.16.0"
+  },
   "devDependencies": {
     "@types/co-body": "^0.0.3",
     "@types/jest": "^24.0.18",
@@ -17,9 +22,6 @@
   },
   "scripts": {
     "lint": "tsc --noEmit --pretty && tslint -c tslint.json --fix './**/*.ts'"
-  },
-  "resolutions": {
-    "graphql": "14.6.0"
   },
   "version": "0.0.7"
 }
