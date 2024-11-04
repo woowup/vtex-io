@@ -1,5 +1,5 @@
 function wuHeaderSW() {
-    importScripts("https://assets-cdn.woowup.com/js/wu-service-worker.js");
+    importScripts("https://assets-cdn.woowup.com/js/service-worker.js");
     // eslint-disable-next-line no-console
     console.log('[WU] - Activado el Service Worker de Beams')
 }
